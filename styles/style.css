@@ -1,0 +1,104 @@
+body {
+    padding: 0px;
+    margin: 0;
+    font-family: Arial; /* Police pour la page toute entière */
+}
+
+header { /* L'entête */
+  width:100%; /* prend toute la largeur */
+  height:300px; /* et s'étend sur 300px verticalement */
+  position:relative; /* Les éléments fils sont placés dans le référentiel de cet élément */
+}
+
+#banner_container { /* Le container de la bannière */
+    width: 100%; /* prend toute la largeur */
+    height: 100%; /* prend toute la hauteur du header */
+    position: absolute; /* est placé tout en haut */
+    top:0; /* pour être superposé au masque */
+    background:url(../imgs/banner.jpg); /* url de la bannière */
+    background-size:cover; /* le fond est étalé sur tout le container */
+    background-position:center; /* on centre l'image pour un meilleur rendu */
+    z-index:1; /* positionnement sur le 1er étage */
+}
+
+#banner_mask { /* Le masque qui obscurcit la bannière */
+  width:100%; /* prend toute la largeur aussi */
+  height:100%; /* toute la hauteur (du header) */
+  position:absolute; /* est placé */
+  top:0; /* tout en haut de l'entête (important pour pouvoir superposer le masque et l'image) */
+  background:rgba(0,0,0,0.7); /* Couleur d'obscurcissement */
+  z-index:2; /* Placé sur le 2e étage */
+  animation: revelation 1s;
+}
+
+@keyframes revelation { /* La bannière est d'abord dans l'ombre puis on l'éclaire un peu */
+  from {
+    background:rgba(0,0,0,0.8);
+  }
+  to {
+    background:rgba(0,0,0,0.7);
+  }
+}
+
+#signature {
+    height:125px; /* hauteur de logo arbitraire */
+    position:absolute; /* on le place */
+    top:50%; /* au centre verticalement */
+    left: 50%; /* au centre horizontalement */
+    transform:translateX(-50%) translateY(-50%); /* on ajuste en déplaçant de la moitié de la taille du logo */
+    z-index:3; /* Au 3e étage */
+    animation: apparition 1s;
+}
+
+@keyframes apparition { /* Animation d'apparition parce que why not */
+  from {
+    opacity:0; /* à la base on voit pas l'élément */
+  }
+  to {
+    opacity:1; /* et après on le voit lol */
+  }
+}
+
+nav {
+    position: relative;
+    margin-top: -20px; /* décalage vers le haut */
+    z-index:3; /* au 3e étage */
+}
+
+#navigation_list {
+    list-style-type: none; /* liste à points sans points */
+    display: flex; /* une flexbox de qualité supérieure (design responsive) */
+    flex-flow: row wrap; /* en colonne svp */
+    column-gap: 10px; /* séparation horizontale des éléments */
+    background-color: rgba(253, 144, 36, 1); /* fond orange du logo */
+    margin: auto; /* centré horizontalement */
+    width: min(700px, 100%); /* sur mobile: 100% ; sur pc: 700px */
+    border-radius: 5px; /* petits coins arrondis */
+    padding: 0; /* pas de marge intérieure */
+}
+
+#navigation_list li {
+  flex:1; /* chaque élément compte pour une case de flexbox */
+  text-align: center; /* le texte est centré dans chaque case */
+}
+
+.puceNav {
+  background:rgb(253, 144, 36); /* fond orange toujours */
+  border-radius:5px; /* coin arrondi */
+  transition: .2s; /* transition à l'état du dessous en 200ms */
+}
+
+.puceNav:hover { /* quand la souris passe sur le bouton du menu */ 
+  background-color: rgb(calc(253*0.92), calc(144*0.92), calc(36*0.92)); /* on obscurcit légèrement la couleur */
+}
+
+.puceNav a {
+  font-size: 2em; /* texte en taille x2 */
+  text-decoration: none; /* pas de soulignement (hyperlien) */
+  color:black; /* pas de couleur violette (hyperlien) */
+}
+
+.nav_text {
+  display: inline-block;
+  font-size: 1.5em;
+}
