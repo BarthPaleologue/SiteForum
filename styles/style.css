@@ -75,6 +75,7 @@ nav {
     width: min(700px, 100%); /* sur mobile: 100% ; sur pc: 700px */
     border-radius: 5px; /* petits coins arrondis */
     padding: 0; /* pas de marge intérieure */
+    box-shadow: 0px 0px 7px black; /* petite ombre stylée mais peut être pas cohérente avec la charte graphique faut voir */
 }
 
 #navigation_list li {
