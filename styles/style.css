@@ -1,3 +1,7 @@
+:root{
+	--bannerWidthOnHeight:1.5;
+	}
+
 body {
     padding: 0px;
     margin: 0;
@@ -6,7 +10,8 @@ body {
 
 header { /* L'entête */
   width:100%; /* prend toute la largeur */
-  height:300px;
+  height:min(300px,calc(100vw*1/var(--bannerWidthOnHeight)));
+  
   position:relative; /* Les éléments fils sont placés dans le référentiel de cet élément */
 }
 
@@ -41,14 +46,13 @@ header { /* L'entête */
 }
 
 #signature {
-    height:125px; /* hauteur de logo arbitraire */
     position:absolute; /* on le place */
     top:50%; /* au centre verticalement */
     left:50%;
     transform:translateX(-50%) translateY(-50%); /* on ajuste en déplaçant de la moitié de la taille du logo */
     z-index:3; /* Au 3e étage */
     animation: apparition 1s;
-    
+    width:min(100%,500px)
 }
 
 @keyframes apparition { /* Animation d'apparition parce que why not */
