@@ -1,16 +1,16 @@
-:root{
+:root {
 	--bannerWidthOnHeight:1.5;
-	}
+}
 
 body {
-    padding: 0px;
-    margin: 0;
-    font-family: Arial; /* Police pour la page toute entière */
+  padding: 0px;
+  margin: 0;
+  font-family: Arial; /* Police pour la page toute entière */
 }
 
 header { /* L'entête */
   width:100%; /* prend toute la largeur */
-  height:min(300px,calc(100vw*1/var(--bannerWidthOnHeight)));
+  height:min(300px,calc(100vw / var(--bannerWidthOnHeight)));
   
   position:relative; /* Les éléments fils sont placés dans le référentiel de cet élément */
 }
@@ -46,6 +46,8 @@ header { /* L'entête */
 }
 
 #signature {
+    width:500px; /* hauteur de logo arbitraire */
+    max-width:95%;
     position:absolute; /* on le place */
     top:50%; /* au centre verticalement */
     left:50%;
