@@ -1,6 +1,6 @@
 
 :root{
-	--bannerWidthOnHeight:1.0;
+	--bannerMinRatio:1.5;
 }
 
 body {
@@ -11,8 +11,7 @@ body {
 
 header { /* L'entête */
   width:100%; /* prend toute la largeur */
-  /*height:min(300px, calc(100vw / var(--bannerWidthOnHeight)));*/
-  height: min(70vw, 300px);
+  height:min(300px, calc(100vw / var(--bannerMinRatio)));
   
   position:relative; /* Les éléments fils sont placés dans le référentiel de cet élément */
 }
