@@ -1,115 +1,244 @@
-
-:root{
-	--bannerMinRatio:1.5;
+:root {
+    --bannerMinRatio: 1.5;
+    --fastColor: rgb(253, 144, 36);
+    --border-radius: 3px;
 }
 
 body {
-  padding: 0px;
-  margin: 0;
-  font-family: Arial; /* Police pour la page toute entière */
+    padding: 0px;
+    margin: 0;
+    font-family: Arial;
+    background: rgb(156 26 26);
+    /* Police pour la page toute entière */
 }
 
-header { /* L'entête */
-  width:100%; /* prend toute la largeur */
-  height:min(300px, calc(100vw / var(--bannerMinRatio)));
-  
-  position:relative; /* Les éléments fils sont placés dans le référentiel de cet élément */
+header {
+    /* L'entête */
+    width: 100%;
+    /* prend toute la largeur */
+    height: max(min(300px, calc(100vw / var(--bannerMinRatio))), 200px);
+    position: relative;
+    /* Les éléments fils sont placés dans le référentiel de cet élément */
 }
 
-#banner_container { /* Le container de la bannière */
-    width: 100%; /* prend toute la largeur */
-    height: 100%; /* prend toute la hauteur du header */
-    position: absolute; /* est placé tout en haut */
-    top:0; /* pour être superposé au masque */
-    background:url(../imgs/banner.jpg); /* url de la bannière */
-    background-size:cover; /* le fond est étalé sur tout le container */
-    background-position:center; /* on centre l'image pour un meilleur rendu */
-    z-index:1; /* positionnement sur le 1er étage */
+#banner_container {
+    /* Le container de la bannière */
+    width: 100%;
+    /* prend toute la largeur */
+    height: 100%;
+    /* prend toute la hauteur du header */
+    position: absolute;
+    /* est placé tout en haut */
+    top: 0;
+    /* pour être superposé au masque */
+    background: url(../imgs/banner.jpg);
+    /* url de la bannière */
+    background-size: cover;
+    /* le fond est étalé sur tout le container */
+    background-position: center;
+    /* on centre l'image pour un meilleur rendu */
+    z-index: 1;
+    /* positionnement sur le 1er étage */
 }
 
-#banner_mask { /* Le masque qui obscurcit la bannière */
-  width:100%; /* prend toute la largeur aussi */
-  height:100%; /* toute la hauteur (du header) */
-  position:absolute; /* est placé */
-  top:0; /* tout en haut de l'entête (important pour pouvoir superposer le masque et l'image) */
-  background:rgba(0,0,0,0.7); /* Couleur d'obscurcissement */
-  z-index:2; /* Placé sur le 2e étage */
-  animation: revelation 1s;
+#banner_mask {
+    /* Le masque qui obscurcit la bannière */
+    width: 100%;
+    /* prend toute la largeur aussi */
+    height: 100%;
+    /* toute la hauteur (du header) */
+    position: absolute;
+    /* est placé */
+    top: 0;
+    /* tout en haut de l'entête (important pour pouvoir superposer le masque et l'image) */
+    background: rgba(0, 0, 0, 0.7);
+    /* Couleur d'obscurcissement */
+    z-index: 2;
+    /* Placé sur le 2e étage */
+    animation: revelation 1s;
 }
 
-@keyframes revelation { /* La bannière est d'abord dans l'ombre puis on l'éclaire un peu */
-  from {
-    background:rgba(0,0,0,0.8);
-  }
-  to {
-    background:rgba(0,0,0,0.7);
-  }
+@keyframes revelation {
+    /* La bannière est d'abord dans l'ombre puis on l'éclaire un peu */
+    from {
+        background: rgba(0, 0, 0, 0.8);
+    }
+    to {
+        background: rgba(0, 0, 0, 0.7);
+    }
 }
 
 #signature {
-    width:500px; /* hauteur de logo arbitraire */
-    max-width:95%;
-    position:absolute; /* on le place */
-    top:50%; /* au centre verticalement */
-    left:50%;
-    transform:translateX(-50%) translateY(-50%); /* on ajuste en déplaçant de la moitié de la taille du logo */
-    z-index:3; /* Au 3e étage */
+    width: 500px;
+    /* hauteur de logo arbitraire */
+    max-width: 95%;
+    position: absolute;
+    /* on le place */
+    top: 50%;
+    /* au centre verticalement */
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    /* on ajuste en déplaçant de la moitié de la taille du logo */
+    z-index: 3;
+    /* Au 3e étage */
     animation: apparition 1s;
-    width:min(100%,500px)
+    width: min(100%, 500px)
 }
 
-@keyframes apparition { /* Animation d'apparition parce que why not */
-  from {
-    opacity:0; /* à la base on voit pas l'élément */
-    left: 0%;
-  }
-  to {
-    opacity:1; /* et après on le voit lol */
-    left:50%;
-  }
+@keyframes apparition {
+    /* Animation d'apparition parce que why not */
+    from {
+        opacity: 0;
+        /* à la base on voit pas l'élément */
+        left: 0%;
+    }
+    to {
+        opacity: 1;
+        /* et après on le voit lol */
+        left: 50%;
+    }
 }
 
 nav {
+    /*background: linear-gradient(
+90deg
+, rgba(253,144,36,0) -100%, rgba(253,144,36,1) 50%, rgba(253,144,36,0) 200%);*/
     position: relative;
-    margin-top: -20px; /* décalage vers le haut */
-    z-index:3; /* au 3e étage */
+    margin-top: -20px;
+    /* décalage vers le haut */
+    z-index: 3;
+    /* au 3e étage */
 }
 
 #navigation_list {
-    list-style-type: none; /* liste à points sans points */
-    display: flex; /* une flexbox de qualité supérieure (design responsive) */
-    flex-flow: row wrap; /* en colonne svp */
-    column-gap: 10px; /* séparation horizontale des éléments */
-    background-color: rgba(253, 144, 36, 1); /* fond orange du logo */
-    margin: auto; /* centré horizontalement */
-    width: min(700px, 100%); /* sur mobile: 100% ; sur pc: 700px */
-    border-radius: 5px; /* petits coins arrondis */
-    padding: 0; /* pas de marge intérieure */
-    box-shadow: 0px 0px 7px black; /* petite ombre stylée mais peut être pas cohérente avec la charte graphique faut voir */
+    list-style-type: none;
+    /* liste à points sans points */
+    display: flex;
+    /* une flexbox de qualité supérieure (design responsive) */
+    flex-flow: row wrap;
+    /* en colonne svp */
+    column-gap: 10px;
+    /* séparation horizontale des éléments */
+    background-color: var(--fastColor);
+    /* fond orange du logo */
+    margin: auto;
+    /* centré horizontalement */
+    width: min(700px, 100%);
+    /* sur mobile: 100% ; sur pc: 700px */
+    border-radius: var(--border-radius);
+    /* petits coins arrondis */
+    padding: 0;
+    /* pas de marge intérieure */
+    box-shadow: 0px 0px 7px black;
+    /* petite ombre stylée mais peut être pas cohérente avec la charte graphique faut voir */
 }
 
 #navigation_list li {
-  flex:1; /* chaque élément compte pour une case de flexbox */
-  text-align: center; /* le texte est centré dans chaque case */
+    flex: 1;
+    /* chaque élément compte pour une case de flexbox */
+    text-align: center;
+    /* le texte est centré dans chaque case */
+    cursor: pointer;
 }
 
 .puceNav {
-  background:rgb(253, 144, 36); /* fond orange toujours */
-  border-radius:5px; /* coin arrondi */
-  transition: .2s; /* transition à l'état du dessous en 200ms */
+    background: var(--fastColor);
+    /* fond orange toujours */
+    border-radius: var(--border-radius);
+    /* coin arrondi */
+    transition: .2s;
+    /* transition à l'état du dessous en 200ms */
 }
 
-.puceNav:hover { /* quand la souris passe sur le bouton du menu */ 
-  background-color: rgb(calc(253*0.92), calc(144*0.92), calc(36*0.92)); /* on obscurcit légèrement la couleur */
+.puceNav:hover {
+    /* quand la souris passe sur le bouton du menu */
+    background-color: rgb(calc(253*0.92), calc(144*0.92), calc(36*0.92));
+    /* on obscurcit légèrement la couleur */
 }
 
-.puceNav a {
-  font-size: 2em; /* texte en taille x2 */
-  text-decoration: none; /* pas de soulignement (hyperlien) */
-  color:black; /* pas de couleur violette (hyperlien) */
+.puceNav {
+    font-size: min(9vw, 2em);
+    /* texte en taille x2 */
+    text-decoration: none;
+    /* pas de soulignement (hyperlien) */
+    color: black;
+    /* pas de couleur violette (hyperlien) */
 }
 
 .nav_text {
-  display: inline-block;
-  font-size: 1.5em;
+    display: inline-block;
+    font-size: 1.5em;
+}
+
+#content {
+    /*background: url(../imgs/diesel2.jpg);*/
+    /*background: rgb(calc(253*0.5), calc(144*0.5), calc(36*0.5));*/
+    background-attachment: fixed;
+    background-position: center;
+    background-position-y: 10vh;
+    background-size: cover;
+    margin-top: -30px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+#accueilContainer {
+    display: grid;
+    grid-template-columns: auto 150px;
+}
+
+#welcome {
+    position: relative;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 5px black;
+    background: rgba(20, 20, 20, 0.9);
+}
+
+#welcome h1 {
+    font-size: 2em;
+    color: rgb(232 119 7);
+}
+
+#welcome p {
+    color: darkgrey;
+}
+
+.sectionContainer {
+    position: relative;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 5px black;
+    background: rgba(20, 20, 20, 0.9);
+    /*backdrop-filter: blur(20px);*/
+}
+
+.sectionContainer h2 {
+    text-align: center;
+    color: var(--fastColor);
+}
+
+.sectionContainer h3 {
+    text-align: center;
+    color: rgb(calc(253*0.8), calc(144*0.8), calc(36*0.8));
+}
+
+.sectionContainer p {
+    text-align: center;
+    color: darkgrey;
+}
+
+.sectionContainer img {
+    width: 80%;
+    border-radius: var(--border-radius);
+    margin-left: 10%;
+}
+
+@media screen and (max-width: 500px) {
+    .sectionContainer h2,
+    .sectionContainer h3 {
+        text-align: center;
+    }
 }
