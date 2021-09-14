@@ -30,6 +30,10 @@ document.getElementById("events").addEventListener("click", () => {
     loadFileInto("./pages/events.html", contentContainer);
 });
 
+document.getElementById("bureau").addEventListener("click", () => {
+    loadFileInto("./pages/bureau.html", contentContainer);
+});
+
 document.getElementById("poles").addEventListener("click", () => {
     loadFileInto("./pages/poles.html", contentContainer);
 });
