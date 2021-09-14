@@ -123,7 +123,7 @@ nav {
     /* fond orange du logo */
     margin: auto;
     /* centré horizontalement */
-    width: min(700px, 100%);
+    width: min(800px, 100%);
     /* sur mobile: 100% ; sur pc: 700px */
     border-radius: var(--border-radius);
     /* petits coins arrondis */
@@ -152,7 +152,7 @@ nav {
 
 .puceNav:hover {
     /* quand la souris passe sur le bouton du menu */
-    background-color: rgb(calc(253*0.92), calc(144*0.92), calc(36*0.92));
+    background-color: rgb(calc(253*0.85), calc(144*0.85), calc(36*0.85));
     /* on obscurcit légèrement la couleur */
 }
 
@@ -170,7 +170,7 @@ nav {
     font-size: 1.5em;
 }
 
-#content {
+#contentContainer {
     /*background: url(../imgs/diesel2.jpg);*/
     /*background: rgb(calc(253*0.5), calc(144*0.5), calc(36*0.5));*/
     background-attachment: fixed;
@@ -182,9 +182,37 @@ nav {
     padding-bottom: 20px;
 }
 
-#accueilContainer {
-    display: grid;
-    grid-template-columns: auto 150px;
+
+#mainContent {
+    width: 75%;
+    float: left;
+}
+
+#sideContent {
+    width: 25%;
+    float: right;
+}
+
+@media screen and (max-width:700px) {
+    #mainContent {
+        width: 100%;
+    }
+    #sideContent {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .sectionContainer h1 {
+        text-align: center;
+    }
+    .sectionContainer h2,
+    .sectionContainer h3 {
+        text-align: center;
+    }
+    .sectionContainer p {
+        text-align: center;
+    }
 }
 
 #welcome {
@@ -205,6 +233,27 @@ nav {
     color: darkgrey;
 }
 
+#socials {
+    position: relative;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 5px black;
+    background: rgba(20, 20, 20, 0.9);
+}
+
+#logosContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-items: center;
+}
+
+#logosContainer a img {
+    width: 80%;
+    margin-left: 10%;
+}
+
 .sectionContainer {
     position: relative;
     margin: 10px;
@@ -216,29 +265,19 @@ nav {
 }
 
 .sectionContainer h2 {
-    text-align: center;
     color: var(--fastColor);
 }
 
 .sectionContainer h3 {
-    text-align: center;
     color: rgb(calc(253*0.8), calc(144*0.8), calc(36*0.8));
 }
 
 .sectionContainer p {
-    text-align: center;
     color: darkgrey;
 }
 
-.sectionContainer img {
+.event img {
     width: 80%;
     border-radius: var(--border-radius);
     margin-left: 10%;
-}
-
-@media screen and (max-width: 500px) {
-    .sectionContainer h2,
-    .sectionContainer h3 {
-        text-align: center;
-    }
 }

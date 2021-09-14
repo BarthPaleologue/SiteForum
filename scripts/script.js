@@ -1,11 +1,11 @@
 console.log("le fichier est bien lié");
 
-let contentContainer = document.getElementById("content");
+let contentContainer = document.getElementById("mainContent");
 
 function loadFileInto(filePath, targetElement) {
     let xmlhttp = new XMLHttpRequest();
 
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == XMLHttpRequest.DONE) { // XMLHttpRequest.DONE == 4
             if (xmlhttp.status == 200) {
                 targetElement.innerHTML = xmlhttp.responseText;
