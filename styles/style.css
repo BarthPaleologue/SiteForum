@@ -89,10 +89,6 @@ header {
   cursor:pointer;
 }
 
-#gotoTopButton:active {
-  goTop();
-}
-
 #signature {
     width: 500px;
     /* hauteur de logo arbitraire */
