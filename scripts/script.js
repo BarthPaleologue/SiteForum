@@ -1,8 +1,6 @@
-console.log("le fichier est bien lié");
-
 let currentPage = "accueil";
 
-let contentContainer = document.getElementById("mainContent");
+const contentContainer = document.getElementById("mainContent");
 
 function loadFileInto(filePath, targetElement) {
     let xmlhttp = new XMLHttpRequest();

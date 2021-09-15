@@ -255,7 +255,7 @@ nav {
 
 #video {
     width: 100%;
-    aspect-ratio: calc(16/9);
+    aspect-ratio: 1.8;
     border-radius: var(--border-radius);
 }
 
