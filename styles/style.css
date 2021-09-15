@@ -73,6 +73,26 @@ header {
     }
 }
 
+
+#gotoTopButton {
+  position:fixed;
+  opacity:0.5;
+  bottom:-200px;
+  right:10px;
+  width:min(120px,20%);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 10;
+  animation-fill-mode: both;
+}
+
+#gotoTopButton:hover {
+  cursor:pointer;
+}
+
+#gotoTopButton:active {
+  goTop();
+}
+
 #signature {
     width: 500px;
     /* hauteur de logo arbitraire */
@@ -86,7 +106,7 @@ header {
     /* on ajuste en déplaçant de la moitié de la taille du logo */
     z-index: 3;
     /* Au 3e étage */
-    animation: apparition 1s;
+    animation: apparition 1.5s;
     width: min(100%, 500px)
 }
 
@@ -95,7 +115,7 @@ header {
     from {
         opacity: 0;
         /* à la base on voit pas l'élément */
-        left: 0%;
+        left: -50%;
     }
     to {
         opacity: 1;
