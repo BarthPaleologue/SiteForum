@@ -31,7 +31,7 @@ header {
     /* est placé tout en haut */
     top: 0;
     /* pour être superposé au masque */
-    background: url(../imgs/banner.jpg);
+    background: url(../imgs/Bannière\ sans\ logo.jpg);
     /* url de la bannière */
     background-size: cover;
     /* le fond est étalé sur tout le container */
@@ -204,6 +204,9 @@ nav {
     #sideContent {
         width: 100%;
     }
+    #sideContent .sectionContainer {
+        margin-left: 10px !important;
+    }
 }
 
 @media screen and (max-width:900px) {
@@ -228,9 +231,15 @@ nav {
     background: rgba(20, 20, 20, 0.9);
 }
 
-#welcome h1 {
+#video {
+    width: 100%;
+    border-radius: var(--border-radius);
+    aspect-ratio: calc(16/9);
+}
+
+.sectionContainer h1 {
     font-size: 2em;
-    color: rgb(232 119 7);
+    color: var(--fastColor)/*rgb(232 119 7);*/
 }
 
 #welcome p {
@@ -284,4 +293,69 @@ nav {
     width: 80%;
     border-radius: var(--border-radius);
     margin-left: 10%;
+}
+
+#telecomContainer {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 10px;
+}
+
+#telecomContainer a {
+    width: 100%;
+}
+
+#telecomContainer img {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.GensGroupContainer {
+    display: flex;
+    flex-flow: wrap;
+    row-gap: 5px;
+    column-gap: 5px;
+    width: 100%;
+}
+
+.GensContainer {
+    flex: 1;
+    flex-basis: 10%;
+    width: 100px;
+}
+
+.GensContainer img {
+    width: 100%;
+}
+
+.GensContainer p {
+    width: 100%;
+    text-align: center;
+}
+
+#bureauContainer {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+}
+
+.bossContainer {
+    width: 100%;
+}
+
+.bossContainer img {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.bossContainer p {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+@media screen and (max-width:500px) {
+    #bureauContainer {
+        grid-template-columns: auto;
+    }
 }
