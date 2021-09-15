@@ -1,5 +1,7 @@
 console.log("le fichier est bien lié");
 
+let currentPage = "accueil";
+
 let contentContainer = document.getElementById("mainContent");
 
 function loadFileInto(filePath, targetElement) {
@@ -23,23 +25,38 @@ function loadFileInto(filePath, targetElement) {
 }
 
 document.getElementById("accueil").addEventListener("click", () => {
-    loadFileInto("./pages/accueil.html", contentContainer);
+    if (currentPage != "accueil") {
+        loadFileInto("./pages/accueil.html", contentContainer);
+        currentPage = "accueil";
+    }
 });
 
 document.getElementById("events").addEventListener("click", () => {
-    loadFileInto("./pages/events.html", contentContainer);
+    if (currentPage != "events") {
+        loadFileInto("./pages/events.html", contentContainer);
+        currentPage = "events";
+    }
 });
 
 document.getElementById("bureau").addEventListener("click", () => {
-    loadFileInto("./pages/bureau.html", contentContainer);
+    if (currentPage != "bureau") {
+        loadFileInto("./pages/bureau.html", contentContainer);
+        currentPage = "bureau";
+    }
 });
 
 document.getElementById("poles").addEventListener("click", () => {
-    loadFileInto("./pages/poles.html", contentContainer);
+    if (currentPage != "poles") {
+        loadFileInto("./pages/poles.html", contentContainer);
+        currentPage = "poles";
+    }
 });
 
 document.getElementById("membres").addEventListener("click", () => {
-    loadFileInto("./pages/membres.html", contentContainer);
+    if (currentPage != "membres") {
+        loadFileInto("./pages/membres.html", contentContainer);
+        currentPage = "membres";
+    }
 });
 
 loadFileInto("./pages/accueil.html", contentContainer);
