@@ -79,7 +79,7 @@ header {
   opacity:0.5;
   bottom:-200px;
   right:10px;
-  width:min(120px,20%);
+  width:min(80px,20%);
   transform: translateX(-50%) translateY(-50%);
   z-index: 10;
   animation-fill-mode: both;
@@ -266,6 +266,23 @@ nav {
 
 #welcome p {
     color: darkgrey;
+}
+
+#showcase1x2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+    justify-content: space-around;
+}
+@media screen and (max-width:500px) {
+    #showcase1x2 {
+        grid-template-columns: auto;
+    }
+}
+
+#showcase1x2 img {
+    width: 100%;
+    border-radius: var(--border-radius);
 }
 
 #socials {
