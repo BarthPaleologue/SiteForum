@@ -153,8 +153,6 @@ nav {
     /* une flexbox de qualité supérieure (design responsive) */
     flex-flow: row wrap;
     /* en colonne svp */
-    column-gap: 10px;
-    /* séparation horizontale des éléments */
     background-color: var(--fastColor);
     /* fond orange du logo */
     margin: auto;
