@@ -157,7 +157,7 @@ nav {
     /* fond orange du logo */
     margin: auto;
     /* centré horizontalement */
-    width: min(800px, 100%);
+    width: min(910px, 100%);
     /* sur mobile: 100% ; sur pc: 700px */
     border-radius: var(--border-radius);
     /* petits coins arrondis */
@@ -313,6 +313,11 @@ h1, h2, h3{
 
 #showcase1x2 img {
     width: 100%;
+    border-radius: var(--border-radius);
+}
+
+#showcasePaysage img {
+    width:100%;
     border-radius: var(--border-radius);
 }
 

@@ -1,5 +1,3 @@
-let currentPage = "accueil";
-
 const contentContainer = document.getElementById("mainContent");
 
 function loadFileInto(filePath, targetElement) {
@@ -22,42 +20,19 @@ function loadFileInto(filePath, targetElement) {
     xmlhttp.send();
 }
 
-document.getElementById("accueil").addEventListener("click", () => {
-    if (currentPage != "accueil") {
-        loadFileInto("./pages/accueil.html", contentContainer);
-        currentPage = "accueil";
-    }
-});
+let pages = ["accueil", "events", "bureau", "poles", "membres", "archives"];
+let currentPage = pages[0];
 
-document.getElementById("events").addEventListener("click", () => {
-    if (currentPage != "events") {
-        loadFileInto("./pages/events.html", contentContainer);
-        currentPage = "events";
-    }
-});
+for (let pageID of pages) {
+    document.getElementById(pageID).addEventListener("click", () => {
+        if (currentPage != pageID) {
+            loadFileInto(`./pages/${pageID}.html`, contentContainer);
+            currentPage = pageID;
+        }
+    });
+}
 
-document.getElementById("bureau").addEventListener("click", () => {
-    if (currentPage != "bureau") {
-        loadFileInto("./pages/bureau.html", contentContainer);
-        currentPage = "bureau";
-    }
-});
-
-document.getElementById("poles").addEventListener("click", () => {
-    if (currentPage != "poles") {
-        loadFileInto("./pages/poles.html", contentContainer);
-        currentPage = "poles";
-    }
-});
-
-document.getElementById("membres").addEventListener("click", () => {
-    if (currentPage != "membres") {
-        loadFileInto("./pages/membres.html", contentContainer);
-        currentPage = "membres";
-    }
-});
-
-loadFileInto("./pages/accueil.html", contentContainer);
+loadFileInto(`./pages/${currentPage}.html`, contentContainer);
 
 topScrollButton = document.getElementById("gotoTopButton");
 const effect = new KeyframeEffect(
