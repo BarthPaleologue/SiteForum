@@ -30,10 +30,8 @@ function analyse(doc) {
     if(!img.classList.contains('clickEventRegistered'))
     {
       img.classList.add('clickEventRegistered');
-      console.log("src" + img.src)
-      strs = img.src.split(".");
-      console.log("strs" + strs)
-      var newSrc = new String(strs[0]+".hr."+strs[1]);
+      var indexExtension = img.src.lastIndexOf(".");
+      var newSrc = new String(img.src.substring(0,indexExtension)+".hr"+img.src.substring(indexExtension));
       img.addEventListener("click", new ImgEventHandler(newSrc));
     }
   }
