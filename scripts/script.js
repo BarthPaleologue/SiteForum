@@ -1,14 +1,15 @@
 const contentContainer = document.getElementById("mainContent");
 
-function ImgEventHandler(urlToUse)
+function ImgEventHandler(urlToUse,oldUrl)
 {
   this.newUrl = urlToUse;
+  this.oldUrl = oldUrl;
   this.handleEvent = imgHandleEvent;
 }
 
 function imgHandleEvent()
 {
-  viewImg(this.newUrl);
+  viewImg(this.newUrl,this.oldUrl);
 }
 
 function analyse(doc) {
@@ -19,7 +20,7 @@ function analyse(doc) {
     {
       img.classList.add('clickEventRegistered');
       img.addEventListener("click", () => {
-          viewImg(img.src);
+          viewImg(img.src,"");
       });
     }
   }
@@ -32,7 +33,7 @@ function analyse(doc) {
       img.classList.add('clickEventRegistered');
       var indexExtension = img.src.lastIndexOf(".");
       var newSrc = new String(img.src.substring(0,indexExtension)+".hr"+img.src.substring(indexExtension));
-      img.addEventListener("click", new ImgEventHandler(newSrc));
+      img.addEventListener("click", new ImgEventHandler(newSrc,img.src));
     }
   }
 }
@@ -80,7 +81,7 @@ function onViewImgLoad(){
   refreshImgZoom();
 }
 
-function viewImg(imgsrc) {
+function viewImg(imgsrc,oldUrl) {
   imgView.style.display="block";
   console.log("shouldBeDisplayed")
   document.body.style.overflow = 'hidden';
@@ -89,6 +90,7 @@ function viewImg(imgsrc) {
     onViewImgLoad();
   }
   else{
+
     imgViewIMG.addEventListener('load',onViewImgLoad)
   }
 }
@@ -124,7 +126,7 @@ loadFileInto(`./pages/${currentPage}.html`, contentContainer);
 
 
 topScrollButton = document.getElementById("gotoTopButton");
-const effect = new KeyframeEffect(
+const scrollButtonEffect = new KeyframeEffect(
     topScrollButton, // Element to animate
     [ // Keyframes
         {
@@ -139,11 +141,12 @@ const effect = new KeyframeEffect(
     { duration: 500, direction: "normal", easing: "linear", fill: "both" } // Keyframe settings
 );
 
-const topScrollButtonAnimation = new Animation(effect, Document.timeline);
-
+const topScrollButtonAnimation = new Animation(scrollButtonEffect, Document.timeline);
 
 var animationStart = -1;
 var isAnimationUp = false;
+
+
 
 function checkScrollButton() {
     var b = window.scrollY > 350;
@@ -164,3 +167,22 @@ function goTop() {
 }
 
 document.addEventListener('scroll', checkScrollButton);
+
+function expandArchive(nomArchive) {
+  console.log("expandArchive");
+  sectionArchive = document.getElementById("archive_" + nomArchive);
+  boutonExpand = sectionArchive.getElementsByClassName("lireLaSuite")[0];
+  boutonExpand.style.opacity = 0.5;
+  boutonExpand.innerHTML = "...";
+  boutonExpand.onclick= (() => {retracterArchive(nomArchive)});
+  //boutonExpand.onclick = "retracterArchive('" + nomArchive + "')";
+  loadFileInto("./pages/archives/"+nomArchive+".html",sectionArchive.getElementsByClassName("archiveContainer")[0],);
+}
+
+function retracterArchive(nomArchive) {
+  console.log("retractation " + nomArchive);
+  sectionArchive = document.getElementById("archive_" + nomArchive);
+  boutonExpand.onclick= (() => {expandArchive(nomArchive)});
+  boutonExpand.style.opacity = 1;
+  sectionArchive.getElementsByClassName("archiveContainer")[0].innerHTML = "";
+}
