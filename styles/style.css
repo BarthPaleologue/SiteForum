@@ -5,10 +5,14 @@
 
 :root {
     --bannerMinRatio: 1.5;
+    --imgViewImgRatio: 1.0;
     --fastColor: rgb(253, 144, 36);
     --border-radius: 5px;
     --box-shadow-blur:7px;
+    --imgZoomFactor:1.0;
 }
+
+
 
 *::selection {
     background: rgba(50,50,50,0.5);
@@ -71,7 +75,7 @@ header {
     /* est placé */
     top: 0;
     /* tout en haut de l'entête (important pour pouvoir superposer le masque et l'image) */
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     /* Couleur d'obscurcissement */
     z-index: 2;
     /* Placé sur le 2e étage */
@@ -84,7 +88,7 @@ header {
         background: rgba(0, 0, 0, 0.8);
     }
     to {
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.6);
     }
 }
 
@@ -92,9 +96,8 @@ header {
   position:fixed;
   opacity:0.5;
   bottom:-200px;
-  right:10px;
+  right:5px;
   width:min(80px,20%);
-  transform: translateX(-50%) translateY(-50%);
   z-index: 10;
   animation-fill-mode: both;
   border-radius: 100%;
@@ -179,6 +182,15 @@ nav {
     font-family: militech;
     min-width: 110px;
 
+}
+
+.roundButton {
+  width:min(80px,15vw);
+  border-radius: 100%;
+}
+
+.roundButton:hover {
+  cursor:pointer;
 }
 
 .puceNav {
@@ -289,7 +301,6 @@ h1, h2, h3{
     font-family: militech;
 }
 
-
 .sectionContainer h1 {
     font-size: 2.5em;
     color: var(--fastColor)/*rgb(232 119 7);*/
@@ -305,6 +316,8 @@ h1, h2, h3{
     gap: 10px;
     justify-content: space-around;
 }
+
+
 @media screen and (max-width:500px) {
     #showcase1x2 {
         grid-template-columns: auto;
@@ -320,6 +333,7 @@ h1, h2, h3{
     width:100%;
     border-radius: var(--border-radius);
 }
+
 
 #socials {
     position: relative;
@@ -364,6 +378,22 @@ h1, h2, h3{
     color: darkgrey;
 }
 
+.flexContainer {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  row-gap: 5px;
+  column-gap: 5px;
+  width: 100%;
+}
+
+.sideElement {
+  width:50%;
+}
+
+.flexText {
+  flex-shrink:2;
+}
 
 .event {
     transform: translateX(0);
@@ -381,6 +411,44 @@ h1, h2, h3{
     width: 80%;
     border-radius: var(--border-radius);
     margin-left: 10%;
+}
+
+#imgView {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background-color:rgba(80,80,80,0.5);
+  z-index: 20;
+  top:0px;
+  text-align:center;
+  display:none;
+}
+
+#imgInImgView {
+ position:relative;
+ padding-top:max(min(80px,15vw),0.5*(100vh - calc(var(--imgZoomFactor)*(min(100vh,((1.0/var(--imgViewImgRatio))*100vw))))));
+ width:calc(var(--imgZoomFactor)*(min(100vw,(var(--imgViewImgRatio)*100vh))));
+}
+
+#scrollImgContainer {
+  height:100vh;
+  width:100vw;
+  overflow:scroll;
+}
+
+#exitButton {
+  position:absolute;
+  top:5px;
+  right:5px;
+  z-index: 21;
+}
+
+#zoomButtonContainer {
+  position:absolute;
+  top:5px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index: 21;
 }
 
 #telecomContainer {
@@ -414,6 +482,15 @@ h1, h2, h3{
     transform: scale(1);
     animation: pop 0.5s;
 }
+
+.zable:hover{
+  cursor:pointer;
+}
+
+.hrzable:hover{
+  cursor:pointer;
+}
+
 @keyframes pop {
     from {
         transform: scale(0);
