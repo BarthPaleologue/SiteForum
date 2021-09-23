@@ -1,0 +1,4 @@
+#imgInImgView {
+  z-index: 20;
+ height:auto;
+}
