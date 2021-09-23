@@ -1,5 +1,21 @@
 const contentContainer = document.getElementById("mainContent");
 
+imgChain = [];
+
+var imgChainIndex = 0;
+
+
+function goToImgIndex(url) {
+  for (var i = 0; i < imgChain.length; i++) {
+    if(new String(imgChain[i].url).trim() == new String(url).trim())
+    {
+      imgChainIndex =  i;
+      return i;
+    }
+ }
+ console.log("erreur url image inconnue " + url )
+}
+
 function ImgEventHandler(urlToUse,oldUrl)
 {
   this.newUrl = urlToUse;
@@ -7,10 +23,58 @@ function ImgEventHandler(urlToUse,oldUrl)
   this.handleEvent = imgHandleEvent;
 }
 
+function ImgMaillon(imgUrl,isLoaded,jsImage)
+{
+  this.isLoaded = isLoaded;
+  this.jsImage = jsImage;
+  this.url = imgUrl;
+}
+
+function preloadImg(imgMaillon) {
+  if(!imgMaillon.isLoaded) {
+    imgMaillon.jsImage = new Image();
+    imgMaillon.jsImage.id = "imgInImgView";
+    console.log("imgsrc " + imgMaillon.url);
+    imgMaillon.jsImage.src = imgMaillon.url;
+    imgMaillon.isLoaded = true;
+  }
+}
+
 function imgHandleEvent()
 {
   viewImg(this.newUrl,this.oldUrl);
 }
+
+function updateImgChain() {
+  imgChain = [];
+  var imgs = document.getElementsByTagName("img");
+  for (let img of imgs)
+  {
+    if(img.classList.contains("zable"))
+    {
+      imgChain.push(new ImgMaillon(img.src,false,null));
+    }
+    else
+    {
+      if(img.classList.contains("hrzable"))
+      {
+        imgChain.push(new ImgMaillon(toHrUrl(img.src),false,null));
+      }
+    }
+  }
+}
+
+function slider(agauche)
+{
+  if(agauche) {
+    imgChainIndex --;
+  }
+  else {
+    imgChainIndex ++;
+  }
+  viewCurrentImg();
+}
+
 
 function analyse(doc) {
   var imgs = doc.getElementsByClassName("zable");
@@ -31,11 +95,17 @@ function analyse(doc) {
     if(!img.classList.contains('clickEventRegistered'))
     {
       img.classList.add('clickEventRegistered');
-      var indexExtension = img.src.lastIndexOf(".");
-      var newSrc = new String(img.src.substring(0,indexExtension)+".hr"+img.src.substring(indexExtension));
-      img.addEventListener("click", new ImgEventHandler(newSrc,img.src));
+
+      img.addEventListener("click", new ImgEventHandler(toHrUrl(img.src),img.src));
     }
   }
+  updateImgChain();
+}
+
+function toHrUrl(url)
+{
+  var indexExtension = url.lastIndexOf(".");
+  return new String(url.substring(0,indexExtension)+".hr"+url.substring(indexExtension));
 }
 
 function loadFileInto(filePath, targetElement) {
@@ -72,41 +142,68 @@ for (let pageID of pages) {
 }
 
 const imgView = document.getElementById("imgView");
-const imgViewIMG = document.getElementById("imgInImgView");
+var imgViewIMG = document.getElementById("imgInImgView");
 const imgScrollContainer = document.getElementById("scrollImgContainer");
 var imgZoomLevel = -1;
 
-function onViewImgLoad(){
-  document.documentElement.style.setProperty('--imgViewImgRatio',(parseFloat(imgViewIMG.naturalWidth)/parseFloat(imgViewIMG.naturalHeight)));
-  refreshImgZoom();
+var inImgView = false;
+
+function keyPress (e) {
+    if(e.key === "Escape" && inImgView) {
+        exitImgView();
+    }
 }
 
-function viewImg(imgsrc,oldUrl) {
-  imgView.style.display="block";
-  console.log("shouldBeDisplayed")
+function onViewImgLoad(){
+  document.documentElement.style.setProperty('--imgViewImgRatio',(parseFloat(imgViewIMG.naturalWidth)/parseFloat(imgViewIMG.naturalHeight)));
+  imgScrollContainer.innerHTML = "";
+  imgScrollContainer.appendChild(imgViewIMG);
+  refreshImgZoom();
+  console.log("preload des autres");
+  if(imgChainIndex < imgChain.length-1)
+  {
+    preloadImg(imgChain[imgChainIndex + 1]);
+  }
+  if(imgChainIndex > 0)
+  {
+    preloadImg(imgChain[imgChainIndex-1]);
+  }
+}
+
+
+
+function viewCurrentImg() {
   document.body.style.overflow = 'hidden';
-  imgViewIMG.src = imgsrc;
-  if(imgViewIMG.complete){
+  imgView.style.display="block";
+  var imgMaillon = imgChain[imgChainIndex];
+  preloadImg(imgMaillon);
+  imgViewIMG = imgMaillon.jsImage;
+  if(imgMaillon.jsImage.complete){
     onViewImgLoad();
   }
   else{
-
-    imgViewIMG.addEventListener('load',onViewImgLoad)
+    console.log("img load uncomplete");
+    imgMaillon.jsImage.addEventListener('load',onViewImgLoad)
   }
+  inImgView = true;
+}
+
+function viewImg(imgsrc,oldUrl) {
+  goToImgIndex(imgsrc);
+  viewCurrentImg();
 }
 
 function exitImgView() {
   imgZoomLevel = -1;
-  imgViewIMG.src = "";
   imgView.style.display="none";
   document.body.style.overflow = 'visible';
+  inImgView = false;
 }
 
 function refreshImgZoom() {
   var relScrollX = parseFloat(imgScrollContainer.scrollLeft+imgScrollContainer.clientWidth*0.5)/parseFloat(imgViewIMG.clientWidth);
   var relScrollY = (parseFloat(imgScrollContainer.scrollTop)+imgScrollContainer.clientHeight*0.5)/parseFloat(imgViewIMG.clientHeight);
   document.documentElement.style.setProperty('--imgZoomFactor',Math.pow(1.2,imgZoomLevel));
-  console.log("relScroll" + relScrollX);
   imgScrollContainer.scrollLeft = relScrollX*imgViewIMG.clientWidth-0.5*imgScrollContainer.clientWidth;
   imgScrollContainer.scrollTop = relScrollY*imgViewIMG.clientHeight-0.5*imgScrollContainer.clientHeight;
 }
@@ -169,7 +266,6 @@ function goTop() {
 document.addEventListener('scroll', checkScrollButton);
 
 function expandArchive(nomArchive) {
-  console.log("expandArchive");
   sectionArchive = document.getElementById("archive_" + nomArchive);
   boutonExpand = sectionArchive.getElementsByClassName("lireLaSuite")[0];
   boutonExpand.style.opacity = 0.5;
@@ -180,7 +276,6 @@ function expandArchive(nomArchive) {
 }
 
 function retracterArchive(nomArchive) {
-  console.log("retractation " + nomArchive);
   sectionArchive = document.getElementById("archive_" + nomArchive);
   boutonExpand.onclick= (() => {expandArchive(nomArchive)});
   boutonExpand.style.opacity = 1;
