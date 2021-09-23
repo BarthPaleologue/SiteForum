@@ -67,9 +67,17 @@ function updateImgChain() {
 function slider(agauche)
 {
   if(agauche) {
+	if(imgChainIndex == 0)
+	{
+		return;
+	}
     imgChainIndex --;
   }
   else {
+	if(imgChainIndex == imgChain.length-1)
+	{
+		return;
+	}
     imgChainIndex ++;
   }
   viewCurrentImg();
@@ -159,7 +167,6 @@ function onViewImgLoad(){
   imgScrollContainer.innerHTML = "";
   imgScrollContainer.appendChild(imgViewIMG);
   refreshImgZoom();
-  console.log("preload des autres");
   if(imgChainIndex < imgChain.length-1)
   {
     preloadImg(imgChain[imgChainIndex + 1]);
@@ -182,7 +189,6 @@ function viewCurrentImg() {
     onViewImgLoad();
   }
   else{
-    console.log("img load uncomplete");
     imgMaillon.jsImage.addEventListener('load',onViewImgLoad)
   }
   inImgView = true;
@@ -271,7 +277,6 @@ function expandArchive(nomArchive) {
   boutonExpand.style.opacity = 0.5;
   boutonExpand.innerHTML = "...";
   boutonExpand.onclick= (() => {retracterArchive(nomArchive)});
-  //boutonExpand.onclick = "retracterArchive('" + nomArchive + "')";
   loadFileInto("./pages/archives/"+nomArchive+".html",sectionArchive.getElementsByClassName("archiveContainer")[0],);
 }
 
