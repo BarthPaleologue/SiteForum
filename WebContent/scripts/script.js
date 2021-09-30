@@ -180,7 +180,7 @@ function onViewImgLoad(){
 
 
 function viewCurrentImg() {
-  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
   imgView.style.display="block";
   var imgMaillon = imgChain[imgChainIndex];
   preloadImg(imgMaillon);
@@ -202,7 +202,7 @@ function viewImg(imgsrc,oldUrl) {
 function exitImgView() {
   imgZoomLevel = -1;
   imgView.style.display="none";
-  document.body.style.overflow = 'visible';
+  document.documentElement.style.overflow = 'visible';
   inImgView = false;
 }
 
