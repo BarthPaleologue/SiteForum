@@ -7,7 +7,10 @@
 :root {
   --bannerMinRatio: 1.5;
   --imgViewImgRatio: 1.0;
-  --fastColor: rgb(253, 144, 36);
+  /*--fastColor: rgb(253, 144, 36);*/
+  --fastColor: rgb(131,33,22);
+  /*--bodyColor:#9c1a1a;*/
+  --bodyColor: black;
   --border-radius: 5px;
   --box-shadow-blur:7px;
   --imgZoomFactor: 1.0;
@@ -38,7 +41,7 @@ body {
   padding: 0px;
   margin: 0;
   font-family: Arial;
-  background: #9c1a1a;
+  background: var(--bodyColor);
   /* Police pour la page toute entière */
 }
 
@@ -216,7 +219,7 @@ nav {
 
 .puceNav:hover {
   /* quand la souris passe sur le bouton du menu */
-  background-color: rgb(calc(253*0.85), calc(144*0.85), calc(36*0.85));
+  background-color: rgb(calc(131*0.85), calc(33*0.85), calc(22*0.85));
   /* on obscurcit légèrement la couleur */
 }
 
@@ -382,7 +385,8 @@ h1, h2, h3 {
 }
 
 .sectionContainer h3 {
-  color: rgb(calc(253*0.8), calc(144*0.8), calc(36*0.8));
+  /*color: rgb(calc(253*0.8), calc(144*0.8), calc(36*0.8));*/
+  color:rgb(105,26,18)
 }
 
 .sectionContainer p {
@@ -420,7 +424,9 @@ h1, h2, h3 {
 }
 
 #imgInImgView {
-  margin-top: calc( max( min(80px,15vw),0.5*(100vh - calc(var(--imgZoomFactor)*(min(100vh,((1.0/var(--imgViewImgRatio))*100vw)))))));
+  margin-top: calc(
+ max(
+ min(80px,15vw),0.5*(100vh - calc(var(--imgZoomFactor)*(min(100vh,((1.0/var(--imgViewImgRatio))*100vw)))))));
   width: calc(var(--imgZoomFactor)*(min(100vw,(var(--imgViewImgRatio)*100vh))));
 }
 
