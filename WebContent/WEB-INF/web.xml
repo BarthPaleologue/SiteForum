@@ -5,6 +5,7 @@
 	    <servlet-name>ArchivesServlet</servlet-name>
 	    <servlet-class>fr.fastandforum.servlets.ArchivesServlet</servlet-class>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>ArchivesServlet</servlet-name>
     	<url-pattern>/pages/archives.html</url-pattern>
@@ -12,5 +13,13 @@
 	<listener>
     	<listener-class>fr.fastandforum.main.Main</listener-class>
 	</listener>
-
+	<filter>
+	    <filter-name>CharacterSetFilter</filter-name>
+	    <filter-class>fr.fastandforum.filter.CharacterSetFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>CharacterSetFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
