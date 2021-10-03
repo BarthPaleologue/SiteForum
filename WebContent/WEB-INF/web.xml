@@ -5,10 +5,6 @@
 	    <servlet-name>ArchivesServlet</servlet-name>
 	    <servlet-class>fr.fastandforum.servlets.ArchivesServlet</servlet-class>
 	</servlet>
-	<servlet>
-	    <servlet-name>StartupServlet</servlet-name>
-	    <servlet-class>fr.fastandforum.servlets.StartupServlet</servlet-class>
-	</servlet>
 	<servlet-mapping>
 		<servlet-name>ArchivesServlet</servlet-name>
     	<url-pattern>/pages/archives.html</url-pattern>

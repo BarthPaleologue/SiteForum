@@ -33,6 +33,7 @@ public class ArchivesData
 				List<String> description = new ArrayList<String>();
 				BufferedReader readerDesc = FileUtils.getFileReader("/pages/archives/" + parser.id + "_header.html", config);
 				try {
+					
 					readerDesc.lines().forEach(l -> description.add(l));
 				}
 				finally {
