@@ -67,7 +67,7 @@ header {
   /* est placé tout en haut */
   top: 0;
   /* pour être superposé au masque */
-  background: url("../imgs/Bannière sans logo.jpg");
+  background: url("../imgs/Banniere_sans_logo.jpg");
   /* url de la bannière */
   background-size: cover;
   /* le fond est étalé sur tout le container */
