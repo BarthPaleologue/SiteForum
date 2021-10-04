@@ -43,7 +43,6 @@ public class ArchiveHtmlBuilder
 		for(String str : strs)
 		{
 			writer.write(str);
-			System.out.println(str);
 		}
 	}
 	
