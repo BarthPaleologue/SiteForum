@@ -39,7 +39,7 @@ public class ArchivesData
 				finally {
 					readerDesc.close();
 				}
-				units .add(new ArchiveUnit(parser.id, parser.type, parser.doesExpand, dateRank, description));
+				units .add(new ArchiveUnit(parser.id, parser.type, parser.doesExpand, parser.hrHeader, dateRank, description));
 				str = descriptor.readLine();
 			}
 		} finally {

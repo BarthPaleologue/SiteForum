@@ -10,11 +10,13 @@ public class ArchiveHtmlBuilder
 {
 	public static void printHtml(PrintWriter writer,Stream<ArchiveUnit> stream)
 	{
+		
 		stream.forEach(
 		u -> {
+			String zoom = u.hrHeader ? "hrzable" : "zable";
 			writer.write("<div class=\"sectionContainer\" id=\"archive_" + u.id + "\">");
 					writer.write("  <div class=\"flexContainer\">");
-					writer.write("    <img src=\"imgs/archives/"+ u.id + "/header.jpg\" alt=\"archive\" class=\"bigImg hrzable\">");
+					writer.write("    <img src=\"imgs/archives/"+ u.id + "/header.jpg\" alt=\"archive\" class=\"bigImg " + zoom + "\">");
 					writer.write("    <div class=\"textFlexible doubleWidthFlex\">");
 					writer.write("");
 					writeAll(u.description,writer);

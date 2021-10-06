@@ -6,6 +6,7 @@ import java.util.List;
 public class ArchiveUnit {
 	public final String id;
 	public final String type;
+	public final boolean hrHeader;
 	public final List<String> description;
 	public final int timeRank;
 	public final boolean doesExpand;
@@ -20,10 +21,11 @@ public class ArchiveUnit {
 	};
 	
 	
-	public ArchiveUnit(String id, String type, boolean doesExpand, int timeRank,List<String> description)
+	public ArchiveUnit(String id, String type, boolean doesExpand, boolean hrHeader, int timeRank,List<String> description)
 	{
 		this.id = id;
 		this.type = type;
+		this.hrHeader = hrHeader;
 		this.doesExpand = doesExpand;
 		this.timeRank = timeRank;
 		this.description = description;
