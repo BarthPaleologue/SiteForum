@@ -14,11 +14,12 @@ public class CharacterSetFilter implements Filter{
 		      ServletRequest request, 
 		      ServletResponse response, 
 		      FilterChain next) throws IOException, ServletException {
+				/*
 				System.out.println("request: " + request.getCharacterEncoding() + " v " + request);
 				if(request instanceof HttpServletRequest)
 				{
 					System.out.println("URL: " +((HttpServletRequest)request).getRequestURL().toString());
-				}
+				}*/
 				request.setCharacterEncoding("UTF-8");
 		        response.setCharacterEncoding("UTF-8");
 		        next.doFilter(request, response);
