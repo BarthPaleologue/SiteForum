@@ -420,7 +420,9 @@ h1, h2, h3 {
 }
 
 #imgInImgView {
-  margin-top: calc( max( min(80px,15vw),0.5*(100vh - calc(var(--imgZoomFactor)*(min(100vh,((1.0/var(--imgViewImgRatio))*100vw)))))));
+  margin-top: calc(
+ max(
+ min(80px,15vw),0.5*(100vh - calc(var(--imgZoomFactor)*(min(100vh,((1.0/var(--imgViewImgRatio))*100vw)))))));
   width: calc(var(--imgZoomFactor)*(min(100vw,(var(--imgViewImgRatio)*100vh))));
 }
 
@@ -537,6 +539,7 @@ h1, h2, h3 {
   flex-grow: 2;
   flex-shrink: 2;
   align-self: center;
+  text-align:center;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
@@ -568,8 +571,16 @@ h1, h2, h3 {
   flex-basis: calc(1.8*var(--dalleAbsoluteWidth));
 }
 
-.bigImg {
-  width: calc(min(2.5*var(--dalleWidth),100%));
+@media screen and (max-width:685px) {
+	.bigImg {
+	 	width: calc(min(2.5*var(--dalleWidth),100%));
+	}
+}
+@media screen and (min-width:685px) {
+	.bigImg {
+		max-height:300px;
+		align-self:center;
+	}
 }
 
 .GensGroupContainer {
