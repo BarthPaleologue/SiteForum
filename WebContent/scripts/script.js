@@ -282,6 +282,7 @@ function expandArchive(nomArchive) {
 
 function retracterArchive(nomArchive) {
   sectionArchive = document.getElementById("archive_" + nomArchive);
+  boutonExpand = sectionArchive.getElementsByClassName("lireLaSuite")[0];
   boutonExpand.onclick= (() => {expandArchive(nomArchive)});
   boutonExpand.style.opacity = 1;
   sectionArchive.getElementsByClassName("archiveContainer")[0].innerHTML = "";
