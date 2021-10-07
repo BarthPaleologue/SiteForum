@@ -682,4 +682,8 @@ h1, h2, h3 {
   position: absolute;
   z-index: 100;
 }
+
+iframe {
+	border-radius:var(--border-radius);
+}
 /*# sourceMappingURL=style.css.map */
