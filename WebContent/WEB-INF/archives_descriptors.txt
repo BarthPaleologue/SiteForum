@@ -1,9 +1,10 @@
 apero_1,repas,expands,hr
 apero_2,repas,noexpands,hr
 openbouffe,repas,noexpands,
+petit_dej,repas,expands,
 nitro_tatane,repas,noexpands,
 defi_foromule1,defi,noexpands,
-defi_telecometude,defi,noexpands,
+defi_telecometude,defi,expands,
 defi_comete,defi,noexpands,
 defi_roulades,defi,noexpands,
 defi_luckylucky,defi,expands,
